@@ -1,0 +1,49 @@
+
+<input class="form-control w-25" type="text" [(ngModel)]="title">
+<h1 class="text-primary text-center">hello {{title}}</h1>
+<!-- String interpoltion -->
+<button class="btn btn-primary" [disabled] = "title === ''" (click)="title=''" >Reset User</button>
+<br>
+<!-- porperty databinding event interpoltion -->
+
+<button class="btn btn-primary" [disabled] = '!allowServer' >Click</button>
+<p *ngIf="allowServer" [ngStyle]="{color: 'red'}">{{allowServer}}</p>
+
+<table *ngIf="toogle" class="table">
+    <thead>
+        <th>counter</th>
+        <th>name</th>
+        <th>salary</th>
+        <th>age</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of emps; let i =index">
+            <td>{{ i + 1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.salary}}</td>
+            <td>{{item.age}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<button class="btn btn-danger" (click)="toogleButton()">Click</button>
+<br>
+<button class="btn btn-primary" (click)="createServer()" >Click</button>
+<p *ngIf="serverCreated; else noServer">Server was created! Name is {{serverTestingName}}</p>
+<ng-template #noServer>
+    <p>No Server Created</p>
+</ng-template>
+
+<!-- Directives are instructions in the dom
+components are Directives
+* => structural directive realy changing the DOM 
+attribute Directives => don't add or remove elements => ngStyle
+-->
+
+<button class="btn btn-primary" (click)="toogleBtn()">Display Data</button>
+<p *ngIf="showSecret">Secret Password = tuna</p>
+<div *ngFor="let item of log; let i = index"
+    [ngStyle]="{backgroundColor: i >= 5 ? 'blue' : 'transparent'}"
+    [ngClass]="{'white-text': i >= 5 }"
+    >{{item}}
+</div>
